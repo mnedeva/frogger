@@ -66,7 +66,7 @@
              * the images src attribute to the passed in URL.
              */
             resourceCache[url] = false;
-            img.src = url;
+            img.src = escape(url);
         }
     }
 

@@ -27,7 +27,7 @@ var Engine = (function(global) {
         level = 1,
         points =0,
         lives = 3,
-        stopped = true;
+        stopped = true; //indicator if the game is stopped
         
     canvas.width = 505;
     canvas.height = 606;
@@ -59,7 +59,7 @@ var Engine = (function(global) {
          * function again as soon as the browser is able to draw another frame.
          */
          
-       if (!this.stopped) {
+       if (!this.stopped) { //game is not over 
            
             /* Call our update/render functions, pass along the time delta to
              * our update function since it may be used for smooth animation.
@@ -70,26 +70,33 @@ var Engine = (function(global) {
             canvas.style.border = "none";
             ctx.fillStyle = "#000"; 
             ctx.font="13px VERDANA";
+            //update level, points and lives
             var text = "LEVEL: "+this.level + " | ";
             text += "POINTS: "+this.points + " | ";
             text += "LIVES: "+this.lives;
             ctx.fillText(text,0,30);           
-            win.requestAnimationFrame(main); 
+            win.requestAnimationFrame(main); //update frame
        } else {       
-            if (this.lives == 0) {
+            if (this.lives == 0) { //out of lives, game is over
                 allEnemies = allEnemies.slice(0,3);
                 ctx.clearRect(0,0, canvas.width, canvas.height);
                 canvas.style.border = "1px solid black";
                 ctx.fillStyle = "#f00"; 
                 ctx.font="40px VERDANA";
                 ctx.fillText("GAME OVER!",140,300);
-                setTimeout(function(){start();}, 2000);
+                setTimeout(function(){start();}, 2000); //after 2 seconds a new game starts
             } else {
-                start();
+                start(); //game is stopped, start a new one
             }           
         }    
      
     };
+   /*
+    * start the game
+    * clear board
+    * reset levels, points and lives
+    * render characters
+    */
    function start() {
         canvas.style.border = "none";
         ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -145,7 +152,9 @@ var Engine = (function(global) {
         player.update();
     }
 
-
+    /*
+     * Render different characters
+     */
     function renderChars() {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
@@ -165,10 +174,10 @@ var Engine = (function(global) {
          * and, using the rowImages array, draw the correct image for that
          * portion of the "grid"
          */
-        
+            //add text to pick a character
             ctx.fillStyle = "#000"; 
-            ctx.font="30px VERDANA";
-            ctx.fillText("PICK A CHARACTER TO PLAY WITH",0,100);  
+            ctx.font="28px VERDANA";
+            ctx.fillText("PICK A CHARACTER TO PLAY WITH",15,100);  
             
             for (col = 0; col < numCols; col++) {
                 /* The drawImage function of the canvas' context element
