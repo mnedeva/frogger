@@ -4,24 +4,43 @@ HTML5 arcade game
 You need only a browser that supports HTML5.
 ##Files included
 /css/style.css
+
 /images/stone-block.png
+
 /images/water-block.png
+
 /images/grass-block.png
+
 /images/enemy-bug.png
+
 /images/char-boy.png
+
 /images/char-princess-girl.png
+
 /images/char-cat-girl.png 
+
 /images/char-horn-girl.png
+
 /images/char-pink-girl.png
+
 /images/Gem Blue.png
+
 /images/Gem Green.png 
+
 /images/Gem Orange.png
+
 /images/Heart.png 
+
 /images/Rock.png
+
 /js/app.js
+
 /js/engine.js
+
 /js/resource.js
+
 index.html
+
 
 
 ##How to run the game 
