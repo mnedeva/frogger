@@ -77,7 +77,7 @@ var Engine = (function(global) {
             ctx.fillText(text,0,30);           
             win.requestAnimationFrame(main); //update frame
        } else {       
-            if (this.lives == 0) { //out of lives, game is over
+            if (this.lives === 0) { //out of lives, game is over
                 allEnemies = allEnemies.slice(0,3);
                 ctx.clearRect(0,0, canvas.width, canvas.height);
                 canvas.style.border = "1px solid black";
@@ -89,8 +89,7 @@ var Engine = (function(global) {
                 start(); //game is stopped, start a new one
             }           
         }    
-     
-    };
+    }
    /*
     * start the game
     * clear board
@@ -211,7 +210,7 @@ var Engine = (function(global) {
                   break;
                 }
             }            
-        }
+        };
     }
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every

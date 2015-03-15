@@ -8,7 +8,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -21,14 +21,15 @@ Enemy.prototype.update = function(dt) {
         this.x = 0;
     }    
     this.x += (this.speed + level*2 + Math.floor(Math.random()*50 +10))*dt;
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
+
 Enemy.prototype.reset = function () {
-}
+};
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -36,7 +37,7 @@ var Player = function(){
     this.x = 200;
     this.y = 410;
     this.sprite = "images/char-princess-girl.png";  
-}
+};
 //Check if a player hits bug or additional entity on the board
 Player.prototype.checkCollisions = function(allEnemies, additionalEntity){
         var $this = this;
@@ -46,7 +47,7 @@ Player.prototype.checkCollisions = function(allEnemies, additionalEntity){
             if (enemy.y -45  < $this.y && $this.y < enemy.y + 45 && 
                 enemy.x +45 > $this.x && $this.x > enemy.x - 45) {
                 lives--;
-                if (lives == 0){  //no more lives; game over
+                if (lives === 0){  //no more lives; game over
                     stopped = true;   
                     allEnemies = []; //reset enemies array
                    
@@ -72,20 +73,20 @@ Player.prototype.checkCollisions = function(allEnemies, additionalEntity){
         }       
         
     return true;
-}
+};
 
 Player.prototype.render = function(){    
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.update = function(dt){
-}
+};
 
 //set player at start position
 Player.prototype.reset = function () {
     this.x = 200;
     this.y = 400;
-}
+};
 
 //handle player's behavior when key is pressed
 Player.prototype.handleInput = function(key){
@@ -112,7 +113,7 @@ Player.prototype.handleInput = function(key){
                 if (lives > 0) {
                     level++; //level up
                     points += 10; //points up
-                    if (level%4 == 0 && allEnemies.length < 6) {
+                    if (level%4 === 0 && allEnemies.length < 6) {
                         //every fourth level enemies are incremented by one
                         //but not more then 6 appears
                         addEnemy();
@@ -138,9 +139,8 @@ Player.prototype.handleInput = function(key){
                 }                
             }
         break;        
-    }
-    
-}
+    }    
+};
 
 //Diamonds, hearts and rock 
 var AdditionalEntity = function(){
@@ -155,21 +155,20 @@ var AdditionalEntity = function(){
                 'images/Rock.png'
             ];
    index = Math.floor(Math.random()*5);
-   this.rock = (index == 4);
-   this.heart = (index == 3);
-   this.sprite = this.sprites[index];       
-   
-}
+   this.rock = (index === 4);
+   this.heart = (index === 3);
+   this.sprite = this.sprites[index];         
+};
 //hide the entity outside the board
 AdditionalEntity.prototype.hide =  function(){
         this.x = -100;
         this.y = -100;
         this.lastTime = Date.now();
-}
+};
 //render entity
 AdditionalEntity.prototype.render =  function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 AdditionalEntity.prototype.update =  function(){ 
      var now = Date.now();
         
@@ -182,8 +181,8 @@ AdditionalEntity.prototype.update =  function(){
             this.x = Math.floor(Math.random()*5) * 101;    
             this.y = Math.floor(Math.random()*3+1) * 72;
             index = Math.floor(Math.random()*5); //random entity pick up
-            this.rock = (index == 4);
-            this.heart = (index == 3);            
+            this.rock = (index === 4);
+            this.heart = (index === 3);            
             this.sprite = this.sprites[index];
             this.lastTime = now;
         }
@@ -193,7 +192,7 @@ AdditionalEntity.prototype.update =  function(){
        //if the entity stayed already 5 seconds, hide it
        this.hide();
    } 
-}
+};
 
 
 
